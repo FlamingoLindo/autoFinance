@@ -9,8 +9,6 @@ import time
 from dotenv import load_dotenv
 import os
 import random
-import pyautogui
-import sys
 load_dotenv()
 
 def get_user_input(prompt):
@@ -106,12 +104,11 @@ def rand_month_year():
                         ).click()
         
 def new_transac():
-    rand_month_year()
     num = 1
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
-        
+        rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="receb"]/div[1]/div/div[4]/div'))
                             ).click()
@@ -270,12 +267,12 @@ def new_transac():
         num +=1     
         
 def new_transac_expenses():
-    rand_month_year()
+    
     num = 1
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
-        
+        rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '/html/body/div[1]/div/div[2]/div/div/div[6]/div[2]/div[1]/div/div[4]/div'))
                             ).click()
@@ -414,12 +411,12 @@ def new_transac_expenses():
         num +=1     
         
 def new_transac_var_expenses():
-    rand_month_year()
+    
     num = 1
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
-        
+        rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div/div/div'))
                             ).click()
@@ -558,12 +555,12 @@ def new_transac_var_expenses():
         num +=1                    
         
 def new_transac_people():
-    rand_month_year()
+    
     num = 1
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
-        
+        rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div/div/div'))
                             ).click()
@@ -973,12 +970,12 @@ def new_transac_people():
         num +=1                          
 
 def new_transac_tax():
-    rand_month_year()
+    
     num = 1
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
-        
+        rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div'))
                             ).click()
@@ -1155,5 +1152,7 @@ elif rand_transac_type == 5:
                             ).click()
     
     new_transac_tax()
+
+get_user_input("DONE")
 # Close the browser
 driver.quit()
