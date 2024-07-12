@@ -89,12 +89,32 @@ transaction_page = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.baT
                                                   )
                        ).click()
 
-
+def rand_month_year():
+    befor_after = random.randint(1, 2)
+    amount = random.randint(1, 12)
+    if befor_after == 1:
+        for _ in range(amount):
+            back = wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, '.baTaHaWd > svg')
+                                                    )
+                        ).click()
+    else:
+        for _ in range(amount):
+            foward = wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, '.baTaHaWj > svg')
+                                                    )
+                        ).click()
+        
 def new_transac():
+    rand_month_year()
     num = 1
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
+        
+        new_btn = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//*[@id="receb"]/div[1]/div/div[4]/div'))
+                            ).click()
         
         desc = wait.until(EC.element_to_be_clickable(
             (By.CSS_SELECTOR, '.baTaIpaO')))
@@ -196,7 +216,7 @@ def new_transac():
                                 )
                             ).click()
             
-            time.sleep(rand_install + 9)
+            time.sleep(rand_install*2.5)
             
         elif rand_shit == 1:
             # IN cash
@@ -246,21 +266,858 @@ def new_transac():
                                 )
                             ).click()
             
-            time.sleep(rand_install +9)
+            time.sleep(rand_install*2.5)
         num +=1     
         
-
+def new_transac_expenses():
+    rand_month_year()
+    num = 1
+    transac_amount_str = get_user_input("How many?")
+    transac_amount_int = int(transac_amount_str)
+    for _ in range(transac_amount_int):
         
-                
-        
-        
-        
-
-rand_transac_type = 2 #random.randint(1, 5)
-if rand_transac_type == 1:
-    new_btn = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="receb"]/div[1]/div/div[4]/div'))
+        new_btn = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '/html/body/div[1]/div/div[2]/div/div/div[6]/div[2]/div[1]/div/div[4]/div'))
                             ).click()
+        
+        desc = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaJfaH')))
+        
+        desc.click()
+        desc.send_keys(f"Description {num}")
+                
+        cost_center_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/select'))
+                            ).click()
+        
+        find1 = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
+                            )
+                           ).click()
+
+        find2 = wait.until(EC.presence_of_element_located
+                        ((By.XPATH, "//option[text()='a']")
+                        )
+                        ).click()
+            
+        recived_from_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/div/div/div[5]/div[2]/div'))
+                            ).click()
+        time.sleep(1)
+        recived_from_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/select'))
+                            )
+        recived_from_dropdown2.click()
+        recived_from_dropdown2.click()
+        
+        recived_from_dropdown2.send_keys("a")
+        
+        categ_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/div[3]/div'))
+                            ).click()
+        time.sleep(1)
+        categ_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaYdaE > .Dropdown'))
+                            )
+        categ_dropdown2.click()
+        categ_dropdown2.click()
+        
+        categ_dropdown2.send_keys("a")
+        
+        rand_value = random.randint(1, 99999999)
+        value = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".baTaJfaD"))
+                            ).send_keys(rand_value)
+        
+        a = wait.until(EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+        )
+                             ).click()
+        
+        rand_shit = random.randint(1, 3)
+        if rand_shit == 2:
+            # Installments
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+                            )
+                           ).click()
+
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Parcelado']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaRuaN")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaJfaC')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+            
+        elif rand_shit == 1:
+            # IN cash
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaJfaC')
+                                )
+                            ).click()
+            time.sleep(0.5)
+        
+        else:
+            # Recurrent
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+                            )
+                           ).click()
+            
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Recorrente']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaRuaN")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaJfaC')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+        num +=1     
+        
+def new_transac_var_expenses():
+    rand_month_year()
+    num = 1
+    transac_amount_str = get_user_input("How many?")
+    transac_amount_int = int(transac_amount_str)
+    for _ in range(transac_amount_int):
+        
+        new_btn = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div/div/div'))
+                            ).click()
+        
+        desc = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaItaE')))
+        
+        desc.click()
+        desc.send_keys(f"Description {num}")
+                
+        cost_center_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/select'))
+                            ).click()
+        
+        find1 = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
+                            )
+                           ).click()
+
+        find2 = wait.until(EC.presence_of_element_located
+                        ((By.XPATH, "//option[text()='a']")
+                        )
+                        ).click()
+            
+        recived_from_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/div/div/div[5]/div[2]/div'))
+                            ).click()
+        time.sleep(1)
+        recived_from_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/select'))
+                            )
+        recived_from_dropdown2.click()
+        recived_from_dropdown2.click()
+        
+        recived_from_dropdown2.send_keys("a")
+        
+        categ_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/div[3]/div'))
+                            ).click()
+        time.sleep(1)
+        categ_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaYdaV > .Dropdown'))
+                            )
+        categ_dropdown2.click()
+        categ_dropdown2.click()
+        
+        categ_dropdown2.send_keys("a")
+        
+        rand_value = random.randint(1, 99999999)
+        value = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".baTaItaF"))
+                            ).send_keys(rand_value)
+        
+        a = wait.until(EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+        )
+                             ).click()
+        
+        rand_shit = random.randint(1, 3)
+        if rand_shit == 2:
+            # Installments
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+                            )
+                           ).click()
+
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Parcelado']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaRmaD")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaItaJ')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+            
+        elif rand_shit == 1:
+            # IN cash
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaItaJ')
+                                )
+                            ).click()
+            time.sleep(0.5)
+        
+        else:
+            # Recurrent
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+                            )
+                           ).click()
+            
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Recorrente']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaRmaD")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaItaJ')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+        num +=1                    
+        
+def new_transac_people():
+    rand_month_year()
+    num = 1
+    transac_amount_str = get_user_input("How many?")
+    transac_amount_int = int(transac_amount_str)
+    for _ in range(transac_amount_int):
+        
+        new_btn = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div/div/div'))
+                            ).click()
+        
+        desc = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaJju')))
+        
+        desc.click()
+        desc.send_keys(f"Description {num}")
+                
+        cost_center_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/select'))
+                            ).click()
+        
+        find1 = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
+                            )
+                           ).click()
+
+        find2 = wait.until(EC.presence_of_element_located
+                        ((By.XPATH, "//option[text()='a']")
+                        )
+                        ).click()
+            
+        recived_from_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/div/div/div[5]/div[2]/div'))
+                            ).click()
+        time.sleep(1)
+        recived_from_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/select'))
+                            )
+        recived_from_dropdown2.click()
+        recived_from_dropdown2.click()
+        
+        recived_from_dropdown2.send_keys("a")
+        
+        categ_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/div[3]/div'))
+                            ).click()
+        time.sleep(1)
+        categ_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaYcb > .Dropdown'))
+                            )
+        categ_dropdown2.click()
+        categ_dropdown2.click()
+        
+        categ_dropdown2.send_keys("a")
+        
+        rand_value = random.randint(1, 99999999)
+        value = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".baTaJjt"))
+                            ).send_keys(rand_value)
+        
+        a = wait.until(EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, ".Dropdown:nth-child(8)")
+        )
+                             ).click()
+        
+        rand_shit = random.randint(1, 3)
+        if rand_shit == 2:
+            # Installments
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(8)")
+                            )
+                           ).click()
+
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Parcelado']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaSaAaG")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            key_type_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+            )
+                                ).click()
+        
+            rand_shit2 = 1#random.randint(1, 6)
+            if rand_shit2 == 1:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Celular']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 2:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='CPF']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+            
+            elif rand_shit2 == 3:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='CNPJ']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 4:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='E-mail']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 5:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Chave Aleatória']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 6:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Pix Copia e Cola']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaJjp')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+            
+        elif rand_shit == 1:
+            # IN cash
+            key_type_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+            )
+                                ).click()
+        
+            rand_shit2 = random.randint(1, 6)
+            if rand_shit2 == 1:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Celular']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 2:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='CPF']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+            
+            elif rand_shit2 == 3:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='CNPJ']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 4:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='E-mail']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 5:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Chave aleatória']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 6:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Pix Copia e Cola']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaJjp')
+                                )
+                            ).click()
+            time.sleep(0.5)
+        
+        else:
+            # Recurrent
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+                            )
+                           ).click()
+            
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Recorrente']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaSaAaG")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            key_type_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+            )
+                                ).click()
+        
+            rand_shit2 = random.randint(1, 6)
+            if rand_shit2 == 1:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Celular']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 2:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='CPF']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+            
+            elif rand_shit2 == 3:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='CNPJ']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 4:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='E-mail']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 5:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Chave aleatória']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            elif rand_shit2 == 6:
+                e = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, "//option[text()='Pix Copia e Cola']")
+                                )
+                            ).click()
+                
+                f = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, ".baTaWaNn")
+                                )
+                            )
+                f.click()
+                rand_key = random.randint(111111111, 999999999)
+                f.send_keys(rand_key)
+                
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaJjp')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+    
+        num +=1                          
+
+def new_transac_tax():
+    rand_month_year()
+    num = 1
+    transac_amount_str = get_user_input("How many?")
+    transac_amount_int = int(transac_amount_str)
+    for _ in range(transac_amount_int):
+        
+        new_btn = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div'))
+                            ).click()
+        
+        desc = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaLaCaH')))
+        
+        desc.click()
+        desc.send_keys(f"Description {num}")
+                
+        cost_center_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/select'))
+                            ).click()
+        
+        find1 = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
+                            )
+                           ).click()
+
+        find2 = wait.until(EC.presence_of_element_located
+                        ((By.XPATH, "//option[text()='a']")
+                        )
+                        ).click()
+            
+        recived_from_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/div/div/div[5]/div[2]/div'))
+                            ).click()
+        time.sleep(1)
+        recived_from_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[2]/select'))
+                            )
+        recived_from_dropdown2.click()
+        recived_from_dropdown2.click()
+        
+        recived_from_dropdown2.send_keys("a")
+        
+        categ_dropdown = wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '//div[5]/div[3]/div'))
+                            ).click()
+        time.sleep(1)
+        categ_dropdown2 = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.baTaYdj > .Dropdown'))
+                            )
+        categ_dropdown2.click()
+        categ_dropdown2.click()
+        
+        categ_dropdown2.send_keys("a")
+        
+        rand_value = random.randint(1, 99999999)
+        value = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".baTaLaCaD"))
+                            ).send_keys(rand_value)
+        
+        a = wait.until(EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+        )
+                             ).click()
+        
+        rand_shit = random.randint(1, 3)
+        if rand_shit == 2:
+            # Installments
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+                            )
+                           ).click()
+
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Parcelado']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaSaAaN")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaLaCaC')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+            
+        elif rand_shit == 1:
+            # IN cash
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaLaCaC')
+                                )
+                            ).click()
+            time.sleep(0.5)
+        
+        else:
+            # Recurrent
+            d = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".Dropdown:nth-child(7)")
+                            )
+                           ).click()
+            
+            e = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//option[text()='Recorrente']")
+                            )
+                           ).click()
+            
+            f = wait.until(EC.presence_of_element_located
+                           ((By.CSS_SELECTOR, ".baTaSaAaN")
+                            )
+                           )
+            f.click()
+            rand_install = random.randint(1, 12)
+            f.send_keys(rand_install)
+            
+            payed_btn = wait.until(EC.presence_of_element_located
+                           ((By.XPATH, "//div[4]/input")
+                            )
+                           ).click()
+
+            confirm_btn = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaLaCaC')
+                                )
+                            ).click()
+            
+            time.sleep(rand_install*2.5)
+        num +=1                    
+
+rand_transac_type = random.randint(1, 5)
+if rand_transac_type == 1:
     new_transac()
 
 elif rand_transac_type == 2:
@@ -269,13 +1126,34 @@ elif rand_transac_type == 2:
                             ((By.XPATH, '/html/body/div[1]/div/div[2]/div/div/div[4]/div[1]/div[2]')
                                 )
                             ).click()
-    
-    new_btn = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '/html/body/div[1]/div/div[2]/div/div/div[6]/div[2]/div[1]/div/div[4]/div'))
+        
+    new_transac_expenses()
+
+elif rand_transac_type == 3:
+    # Variable expenses
+    var_expenses = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, '//div[4]/div/div[3]/div/div')
+                                )
                             ).click()
     
-    new_transac()
+    new_transac_var_expenses()
 
+elif rand_transac_type == 4:
+    # Variable expenses
+    people = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, '//div[4]/div/div[4]/div/div')
+                                )
+                            ).click()
+    
+    new_transac_people()
 
+elif rand_transac_type == 5:
+    # Taxes expenses
+    taxes = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, '.baTaLaAaW')
+                                )
+                            ).click()
+    
+    new_transac_tax()
 # Close the browser
 driver.quit()
