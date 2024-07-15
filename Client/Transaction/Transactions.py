@@ -125,16 +125,16 @@ def new_transac():
                             ).send_keys(rand_phone)
         
         cost_center_dropdown = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="receb"]/div[1]/div/div[5]/select[1]'))
+            (By.XPATH, "//div[5]/select"))
                             ).click()
         
         find1 = wait.until(EC.presence_of_element_located
                            ((By.CSS_SELECTOR, ".Dropdown:nth-child(4)")
                             )
                            ).click()
-
+        
         find2 = wait.until(EC.presence_of_element_located
-                        ((By.XPATH, "//option[text()='a']")
+                        ((By.XPATH, "//option[text()='abc']")
                         )
                         ).click()
             
@@ -284,16 +284,16 @@ def new_transac_expenses():
         desc.send_keys(f"Description {num}")
                 
         cost_center_dropdown = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//div[5]/select'))
+            (By.XPATH, "//div[5]/select"))
                             ).click()
         
         find1 = wait.until(EC.presence_of_element_located
                            ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
                             )
                            ).click()
-
+        
         find2 = wait.until(EC.presence_of_element_located
-                        ((By.XPATH, "//option[text()='a']")
+                        ((By.XPATH, "//option[text()='abc']")
                         )
                         ).click()
             
@@ -428,16 +428,16 @@ def new_transac_var_expenses():
         desc.send_keys(f"Description {num}")
                 
         cost_center_dropdown = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//div[5]/select'))
+            (By.XPATH, "//div[5]/select"))
                             ).click()
         
         find1 = wait.until(EC.presence_of_element_located
                            ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
                             )
                            ).click()
-
+        
         find2 = wait.until(EC.presence_of_element_located
-                        ((By.XPATH, "//option[text()='a']")
+                        ((By.XPATH, "//option[text()='abc']")
                         )
                         ).click()
             
@@ -572,16 +572,16 @@ def new_transac_people():
         desc.send_keys(f"Description {num}")
                 
         cost_center_dropdown = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//div[5]/select'))
+            (By.XPATH, "//div[5]/select"))
                             ).click()
         
         find1 = wait.until(EC.presence_of_element_located
                            ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
                             )
                            ).click()
-
+        
         find2 = wait.until(EC.presence_of_element_located
-                        ((By.XPATH, "//option[text()='a']")
+                        ((By.XPATH, "//option[text()='abc']")
                         )
                         ).click()
             
@@ -987,16 +987,16 @@ def new_transac_tax():
         desc.send_keys(f"Description {num}")
                 
         cost_center_dropdown = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//div[5]/select'))
+            (By.XPATH, "//div[5]/select"))
                             ).click()
         
         find1 = wait.until(EC.presence_of_element_located
                            ((By.CSS_SELECTOR, ".Dropdown:nth-child(3)")
                             )
                            ).click()
-
+        
         find2 = wait.until(EC.presence_of_element_located
-                        ((By.XPATH, "//option[text()='a']")
+                        ((By.XPATH, "//option[text()='abc']")
                         )
                         ).click()
             
