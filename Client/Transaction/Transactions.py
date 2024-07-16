@@ -9,6 +9,7 @@ import time
 from dotenv import load_dotenv
 import os
 import random
+import sys
 load_dotenv()
 
 def get_user_input(prompt):
@@ -87,6 +88,7 @@ transaction_page = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.baT
                                                   )
                        ).click()
 
+
 def rand_month_year():
     befor_after = random.randint(1, 2)
     amount = random.randint(1, 12)
@@ -108,6 +110,7 @@ def new_transac():
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
+        print(num)
         rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="receb"]/div[1]/div/div[4]/div'))
@@ -212,7 +215,6 @@ def new_transac():
                             ((By.CSS_SELECTOR, '.baTaIpaT')
                                 )
                             ).click()
-            
             time.sleep(rand_install*2.5)
             
         elif rand_shit == 1:
@@ -272,6 +274,7 @@ def new_transac_expenses():
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
+        print(num)
         rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '/html/body/div[1]/div/div[2]/div/div/div[6]/div[2]/div[1]/div/div[4]/div'))
@@ -361,7 +364,6 @@ def new_transac_expenses():
                             ((By.CSS_SELECTOR, '.baTaJfaC')
                                 )
                             ).click()
-            
             time.sleep(rand_install*2.5)
             
         elif rand_shit == 1:
@@ -416,6 +418,7 @@ def new_transac_var_expenses():
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
+        print(num)
         rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div/div/div'))
@@ -505,7 +508,6 @@ def new_transac_var_expenses():
                             ((By.CSS_SELECTOR, '.baTaItaJ')
                                 )
                             ).click()
-            
             time.sleep(rand_install*2.5)
             
         elif rand_shit == 1:
@@ -560,6 +562,7 @@ def new_transac_people():
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
+        print(num)
         rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div/div/div'))
@@ -645,7 +648,7 @@ def new_transac_people():
             )
                                 ).click()
         
-            rand_shit2 = 1#random.randint(1, 6)
+            rand_shit2 = random.randint(1, 6)
             if rand_shit2 == 1:
                 e = wait.until(EC.presence_of_element_located
                             ((By.XPATH, "//option[text()='Celular']")
@@ -739,7 +742,6 @@ def new_transac_people():
                             ((By.CSS_SELECTOR, '.baTaJjp')
                                 )
                             ).click()
-            
             time.sleep(rand_install*2.5)
             
         elif rand_shit == 1:
@@ -975,6 +977,7 @@ def new_transac_tax():
     transac_amount_str = get_user_input("How many?")
     transac_amount_int = int(transac_amount_str)
     for _ in range(transac_amount_int):
+        print(num)
         rand_month_year()
         new_btn = wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//div[6]/div[2]/div/div/div[4]/div'))

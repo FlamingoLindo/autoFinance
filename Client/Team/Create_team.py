@@ -60,6 +60,8 @@ team_amount_int = int(team_amount_str)
 num = 1
 for _ in range(team_amount_int):
     
+    time.sleep(1.2)
+    
     new = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.baTaVfs0'))).click()
     
     first_name = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.baTaVhk0')
@@ -90,13 +92,15 @@ for _ in range(team_amount_int):
                                                   )
                        ).click()
     
+    time.sleep(1.2)
+    
     close = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.iziToast-body')
                                                   )
                        ).click()
     
     num += 1
     
-    time.sleep(1)
+    
     
 get_user_input("DONE")
 
