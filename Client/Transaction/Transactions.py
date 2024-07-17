@@ -90,7 +90,7 @@ transaction_page = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.baT
 
 
 def rand_month_year():
-    befor_after = random.randint(1, 2)
+    befor_after = random.randint(1, 3)
     amount = random.randint(1, 12)
     if befor_after == 1:
         for _ in range(amount):
@@ -98,12 +98,14 @@ def rand_month_year():
                 (By.CSS_SELECTOR, '.baTaHaWd > svg')
                                                     )
                         ).click()
-    else:
+    elif befor_after == 2:
         for _ in range(amount):
             foward = wait.until(EC.element_to_be_clickable(
                 (By.CSS_SELECTOR, '.baTaHaWj > svg')
                                                     )
                         ).click()
+    else:
+        pass
         
 def new_transac():
     num = 1
@@ -1116,7 +1118,7 @@ def new_transac_tax():
             time.sleep(rand_install*2.5)
         num +=1                    
 
-rand_transac_type = random.randint(1, 5)
+rand_transac_type = 1#random.randint(1, 5)
 if rand_transac_type == 1:
     new_transac()
 

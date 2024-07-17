@@ -59,6 +59,7 @@ categ_amount_str = get_user_input("How many")
 categ_amount_int = int(categ_amount_str)
 num = 1
 for _ in range(categ_amount_int):
+    
     new_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.baTaKip')
                                                   )
                        ).click()
@@ -67,14 +68,14 @@ for _ in range(categ_amount_int):
                                                   )
                        ).send_keys(f"Category {num}")
     
-    dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.Dropdown')
+    dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[37]/div/select")
                                                   )
                        ).click()
     
     d = wait.until(EC.presence_of_element_located
                    ((By.CSS_SELECTOR, ".Dropdown")
                     )).click()
-
+    
     random_shit = random.randint(1, 5)
     if random_shit == 1:
         a = wait.until(EC.presence_of_element_located
@@ -82,11 +83,11 @@ for _ in range(categ_amount_int):
                         )).click()
     elif random_shit == 2:
         a = wait.until(EC.presence_of_element_located
-                    ((By.XPATH, "//option[text()='Despensas fixas']")
+                    ((By.XPATH, "//option[text()='Despesas fixas']")
                         )).click()
     elif random_shit == 3:
         a = wait.until(EC.presence_of_element_located
-                    ((By.XPATH, "//option[text()='Despensas variáveis']")
+                    ((By.XPATH, "//option[text()='Despesas variáveis']")
                         )).click()
     elif random_shit == 4:
         a = wait.until(EC.presence_of_element_located
@@ -101,7 +102,8 @@ for _ in range(categ_amount_int):
                     ((By.CSS_SELECTOR, ".baTaKpaZ")
                         )).click()
     
-        
+    time.sleep(0.5)
+    
     num += 1
     
     

@@ -72,6 +72,11 @@ for _ in range(quantity):
     delete3 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.baTaOaFt')
                                                   )
                        ).click()
+    
+    close = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.iziToast-message')
+                                                  )
+                       ).click()
+    
      
 get_user_input("DONE")
 
